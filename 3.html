@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p style="font-size: 50px; color: rgb(0, 0, 0);" id="vystup">guyefwgyuefwyguefw</p>
+    red <input type="range" min="0" max="255" id="cervena">
+    green <input type="range" min="0" max="255" id="zelena">
+    blue <input type="range" min="0" max="255" id="modra">    
+    
+    
+    <script>
+    
+    let vystup = document.getElementById("vystup");
+    let cervena = document.getElementById("cervena");
+    let zelena = document.getElementById("zelena");
+    let modra = document.getElementById("modra");
+
+        function zmenBarvu() {
+        let r = cervena.value;  
+        let g = zelena.value;
+        let b = modra.value;
+        vystup.style.color = `rgb(${r}, ${g}, ${b})`;
+        }
+
+    cervena.addEventListener('input', zmenBarvu);
+    zelena.addEventListener('input', zmenBarvu);
+    modra.addEventListener('input', zmenBarvu);
+
+    </script>
+
+</body>
+</html>
