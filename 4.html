@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" id="cislo">
+    <button onclick="overeni()">click me</button>
+    
+    <script>
+        function overeni(){
+            let cislo = parseFloat(document.getElementById("cislo").value)
+
+            if (cislo > 0 && cislo % 1 == 0) {
+            alert("platne cislo");}
+           
+            else{
+                alert ("cislo neni platne");
+            }
+
+}
+    </script>
+</body>
+</html>
