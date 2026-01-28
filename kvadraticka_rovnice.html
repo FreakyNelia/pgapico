@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function vypocet(){
+        let a = parseFloat(document.getElementById("a").value)
+        let b = parseFloat(document.getElementById("b").value)
+        let c = parseFloat(document.getElementById("c").value)
+        let vystup = document.getElementById("cil")
+        let vysledek;
+
+        if(isNaN(a)||isNaN(b)||isNaN(c)){
+            alert("pis cisla proboha")
+        return;} 
+        //lin.rce
+        if(a==0){
+            //nekonecne mhono
+            if(b==0 && c==0){
+            let x=-c/b
+            vystup.innerHTML= " rovnice ma nekonecne mnoho reseni"
+            return;
+            }
+            //jedno reseni
+                if(b!==0 && c!==0){
+                let x=-c/b
+                vystup.innerHTML= x + " rovnice ma jedno reseni"
+                return;
+            }
+            //nema reseni
+                if(b==0 && c!==0){
+                vystup.innerHTML= " rovnice nema reseni"
+            }
+            }
+        
+
+        if(a!==0){
+            let D = b*b -4*a*c
+            // nema reseni
+            if(D<0){
+                vystup.innerHTML= " rovnice nema reseni"
+                return;
+            }
+            // jedno reseni
+            if(D==0){
+                let x= -b/2*a
+                vystup.innerHTML= x+ " rovnice ma jedno reseni"
+                return;
+            }
+            // dva reseni
+            if(D>0){
+                let x1= (-b + Math.sqrt(D)) / (2 * a)
+                let x2= (-b - Math.sqrt(D)) / (2 * a)
+                vystup.innerHTML= x1 + x2 + " rovnice ma dva reseni"
+                return;
+            }
+        }
+    }
+
+</script>
+<body>
+    <h1>Rovnice</h1>
+    A <input type="number" id="a">
+    <br>
+    <br>
+    B <input type="number" id="b">
+    <br>
+    <br>
+    C <input type="number" id="c">
+    <br>
+    <br>
+    <button onclick="vypocet()">vypocitat</button>
+     <p id="cil"></p>
+    
+</body>
+</html>

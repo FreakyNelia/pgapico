@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <label>prvni cislo  </label><input type="number" id="aInput"><br><br>
+        <label>operace  </label><input type="text" id="operaceInput"><br><br>
+        <label>druhe cislo  </label><input type="number" id="bInput"><br><br>
+        <input type="button" value="vypocitej" onclick="kalkulacka()"> <br><br>
+        <p id="cil"></p>
+    </form>
+</body>
+<script>
+    function kalkulacka() {
+        let a = parseFloat(document.getElementById("aInput").value)
+        let b = parseFloat(document.getElementById("bInput").value)
+        let operace = document.getElementById("operaceInput").value
+        let vystupniOdstavec = document.getElementById("cil")
+        let vysledek;
+
+        if(operace == "+") {
+            vysledek = a + b;
+        }
+        else if(operace == "-") {
+            vysledek = a - b;
+        }
+        else if (operace == "*") {
+            vysledek = a * b;
+        }
+                else if (operace == "/") {
+                    if(b == 0){
+                        alert("nemuzeme delit 0");
+                        return;
+                    }
+            vysledek = a / b;
+        }
+        else {
+            alert("tuto operace neznam. zadej + , - , * , / .");
+            return;
+        }
+
+        vystupniOdstavec.innerHTML = a+operace+b+"="+vysledek;
+    }
+</script>
+</html>

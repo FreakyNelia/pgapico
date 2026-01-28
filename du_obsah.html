@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+        let stranaA = prompt("zadej delku strany A")
+        let stranaB = prompt("zadej delku strany B")
+        let stranaC = prompt("zadej delku strany C")
+       
+
+
+if (stranaA === "" || stranaB === "" || stranaC === "" || stranaA === null || stranaB === null || stranaC === null) {
+    alert("vsak tam musis zadat vsechna cisla");
+} else {
+   
+    let a = parseFloat(stranaA);
+    let b = parseFloat(stranaB);
+    let c = parseFloat(stranaC);
+   
+   
+    if (isNaN(a) || isNaN(b) || isNaN(c)) {
+        alert("pis cisla proboha");
+    }
+   
+    else if (a <= 0 || b <= 0 || c <= 0) {
+        alert("hodnoty nesmi byt zaporne");
+    }
+   
+    else if (a + b <= c || a + c <= b || b + c <= a) {
+        alert("s tehle rozmeru trojuhelnik nejde udelat");
+    }
+   
+    else {
+       
+        let s = (a + b + c) / 2;
+        let obsah = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+       
+        alert("obsah trojuhelniku je: " + obsah.toFixed(2) + "cm²");
+    }
+}
+
+</script>
+<body>
+    
+</body>
+</html>

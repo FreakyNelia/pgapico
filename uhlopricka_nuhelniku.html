@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function sudeNeboLiche(){
+        
+            let cislo = document.getElementById("cislo").value*1
+           
+            let celeCislo = parseInt(cislo);
+
+            if(cislo % 2 == 0){
+                alert("cislo je sude");
+            }
+            else{
+                alert("cislo je liche");
+            }
+    }
+</script>
+<body>
+    <label>zadej cislo</label>
+    <input type="number" id="cislo">
+    <input type="button" value="zkontrolovat" onclick="sudeNeboLiche()">
+</body>
+</html>

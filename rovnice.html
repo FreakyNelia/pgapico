@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function vypocet(){
+        let a = parseFloat(document.getElementById("a").value)
+        let b = parseFloat(document.getElementById("b").value)
+        let vystup = document.getElementById("cil")
+        let vysledek;
+
+        if(isNaN(a)||isNaN(b)){
+            alert("pis cisla proboha")
+        return;} 
+        //nekonecne mnoho reseni
+        if(a!==0 && b==0){
+            let x=-b/a
+            vystup.innerHTML= x + " rovnice ma nekonecne mnoho reseni"
+            return;
+        }
+        //jedno reseni
+        if(a!==0 && b!==0){
+            let x=-b/a
+            vystup.innerHTML= x + " rovnice ma jedno reseni"
+            return;
+        }
+        //nema reseni
+        if(a==0 && b!==0){
+        vystup.innerHTML= " rovnice nema reseni"
+        }
+    }
+
+</script>
+<body>
+    <h1>Rovnice</h1>
+    A <input type="number" id="a">
+    <br>
+    <br>
+    B <input type="number" id="b">
+    <br>
+    <br>
+    <button onclick="vypocet()">vypocitat</button>
+     <p id="cil"></p>
+    
+</body>
+</html>
