@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    strana A : <input type="number" id="stranaA"> cm <br>
+    strana B : <input type="number" id="stranaB"> cm <br>
+    <p id="vystup"></p>
+    <button onclick="vypocet()">vpocitat</button>
+   
+    <script>
+        
+        function vypocet(){
+            let a = parseFloat(document.getElementById("stranaA").value)
+            let b = parseFloat(document.getElementById("stranaB").value)
+            let vystup = document.getElementById("vystup")
+
+            if(isNaN(a) || isNaN(b) || a <= 0 || b <= 0){
+                alert("pis cisla vole")
+                return}
+
+            let obvod = a+a+b+b
+            let obsah = a*b
+            let uhlopricka = Math.sqrt(a**2+b**2)
+
+            let novyVystup = "Zadane hodnoty: strana A = " + a + " cm, strana B = " + b + " cm<br>"
+            novyVystup += "obvod = " + obvod + " cm<br>"
+            novyVystup += "obsah = " + obsah + " cm²<br>"
+            novyVystup += "uhlopricka = " + uhlopricka.toFixed(2) + " cm<br>"
+            
+            if(vystup.innerHTML != ""){
+                novyVystup += "_____________________________<br>"
+            }
+            
+            vystup.innerHTML = novyVystup + vystup.innerHTML
+        }
+    
+    </script>
+</body>
+</html>
