@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    napis cislo pro vypocet poctu potrebnych plechovek
+    <br>
+    <br>
+    <input type="number" id="cisloN">
+    <br>
+    <br>
+    <input type="button" onclick="fce()" value="vypocitat">
+    <br>
+    <br>
+    <p id="vystup"></p>
+    <br>
+    <br>
+    <script>
+        function fce(){
+            let n = parseFloat(document.getElementById("cisloN").value);
+            if(isNaN(n) || n <= 0 ){
+                alert("PIS KLADNY CISLA TY KRYPLE KURVAAAAAAAAAAAAAA");
+                return;
+            }
+            else{
+                let vysledek = (n*(n+1))/2
+                vystup.innerHTML += vysledek 
+                return;
+            }
+
+        }
+    </script>
+</body>
+</html>
