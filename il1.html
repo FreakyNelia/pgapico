@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: white;">
+   
+    <button onclick="tema()" id="zmena">zmenit pozadi</button>
+    
+    <button id="doNotClick" style="position: absolute;">NEKLIKAT</button> 
+
+    <script>
+         let tlacitko = document.getElementById("doNotClick");
+    
+        tlacitko.addEventListener("mouseenter", function(){
+        let novaPoziceX = Math.random() * (window.innerWidth - 150);
+        let novaPoziceY = Math.random() * (window.innerHeight - 50);
+        
+        tlacitko.style.left = novaPoziceX + "px";
+        tlacitko.style.top = novaPoziceY + "px";
+    });
+
+        let tmavy = false
+        function tema(){
+            let pozadi = document.getElementById("zmena")
+            if(tmavy == true){
+             document.body.style.backgroundColor = "black"
+             tmavy = false
+            }
+            else{
+                document.body.style.backgroundColor = "white"
+                tmavy = true
+            }
+        }
+    </script>
+    
+    
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let slovo = prompt("zadej slovo (vic nez 2 znaky)");
+
+        // rucne
+        let poleA = [];
+        for (let i = 0; i < slovo.length; i++) {
+            poleA[i] = slovo[i];
+        }
+        poleA[1] = "*";
+        alert("rucne: " + poleA.join(""));
+
+        // ne rucne
+        let poleB = slovo.split("");
+        poleB[1] = "*";
+        alert("ne rucne: " + poleB.join(""));
+    </script>
+</body>
+</html>
