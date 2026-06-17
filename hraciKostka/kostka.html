@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>hraci kostka</h1>
+    <img src="k1.png" alt="obrazek" id="kosobr" onclick="hodKostkou()"> <br>
+    <script>
+        function hodKostkou(){
+            let nahodneCislo = Math.floor(Math.random()*6+1);
+            let kostka= document.getElementById(kosobr).value
+            kostka.src="k"+nahodneCislo+".png"
+            //alert(nahodneCislo);
+        }
+    </script>
+</body>
+</html>

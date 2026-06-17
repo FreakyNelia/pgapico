@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Analýza polynomických funkcí</h2>
+    
+    koeficient a (x²): <input type="number" id="a" step="0.1"> <br>
+    koeficient b (x): <input type="number" id="b" step="0.1"> <br>
+    koeficient c (konstanta): <input type="number" id="c" step="0.1"> <br>
+    <button onclick="analyzuj()">analyzovat</button>
+    
+    <p id="vystup"></p>
+    <canvas id="obrazek" width="300" height="300" style="border: 2px solid black;"></canvas>
+    
+    <script>
+        function analyzuj(){
+            let a = parseFloat(document.getElementById("a").value)
+            let b = parseFloat(document.getElementById("b").value)
+            let c = parseFloat(document.getElementById("c").value)
+            let vystup = document.getElementById("vystup")
+            let canvas = document.getElementById("obrazek")
+            let ctx = canvas.getContext("2d")
+            
+            // validace
+            if(isNaN(b) || isNaN(c)){
+                alert("zadej vsechny hodnoty!")
+                return
+            }
+            
+            let vysledek = ""
+            
+            // rozhodnuti jestli linealni nebo kvadraticka
+            if(isNaN(a) || a == 0){
+                // lineární funkce f(x) = bx + c
+                vysledek += "<strong>Typ funkce:</strong> Lineární funkce<br>"
+                vysledek += "<strong>Předpis:</strong> f(x) = " + b + "x + " + c + "<br><br>"
+                
+                // rostouci/klesajici
+                if(b > 0){
+                    vysledek += "<strong>Monotonie:</strong> Rostoucí funkce<br>"
+                } else if(b < 0){
+                    vysledek += "<strong>Monotonie:</strong> Klesající funkce<br>"
+                } else {
+                    vysledek += "<strong>Monotonie:</strong> Konstantní funkce<br>"
+                }
+                
+                // pruseciky s osami
+                vysledek += "<strong>Průsečík s osou y:</strong> [0, " + c + "]<br>"
+                if(b != 0){
+                    let prusecikX = -c / b
+                    vysledek += "<strong>Průsečík s osou x:</strong> [" + prusecikX.toFixed(2) + ", 0]<br>"
+                } else {
+                    vysledek += "<strong>Průsečík s osou x:</strong> Žádný (nebo celá přímka)<br>"
+                }
+                
+                // nakreslit linearni funkci
+                ctx.clearRect(0, 0, 300, 300)
+                ctx.strokeStyle = "black"
+                ctx.lineWidth = 2
+                
+                // osy
+                ctx.beginPath()
+                ctx.moveTo(150, 0)
+                ctx.lineTo(150, 300)
+                ctx.moveTo(0, 150)
+                ctx.lineTo(300, 150)
+                ctx.stroke()
+                
+                // primka
+                ctx.strokeStyle = "blue"
+                ctx.lineWidth = 3
+                ctx.beginPath()
+                if(b > 0){
+                    // rostouci
+                    ctx.moveTo(50, 250)
+                    ctx.lineTo(250, 50)
+                } else if(b < 0){
+                    // klesajici
+                    ctx.moveTo(50, 50)
+                    ctx.lineTo(250, 250)
+                } else {
+                    // konstantni
+                    ctx.moveTo(0, 150)
+                    ctx.lineTo(300, 150)
+                }
+                ctx.stroke()
+                
+            } else {
+                // kvadratická funkce f(x) = ax² + bx + c
+                vysledek += "<strong>Typ funkce:</strong> Kvadratická funkce<br>"
+                vysledek += "<strong>Předpis:</strong> f(x) = " + a + "x² + " + b + "x + " + c + "<br><br>"
+                
+                // vrchol paraboly
+                let xv = -b / (2 * a)
+                let yv = a * xv * xv + b * xv + c
+                vysledek += "<strong>Vrchol paraboly:</strong> [" + xv.toFixed(2) + ", " + yv.toFixed(2) + "]<br>"
+                
+                // minimum/maximum
+                if(a > 0){
+                    vysledek += "<strong>Extrém:</strong> Minimum v bodě [" + xv.toFixed(2) + ", " + yv.toFixed(2) + "]<br>"
+                    vysledek += "<strong>Monotonie:</strong> Klesá na intervalu (-∞, " + xv.toFixed(2) + "], roste na intervalu [" + xv.toFixed(2) + ", +∞)<br>"
+                } else {
+                    vysledek += "<strong>Extrém:</strong> Maximum v bodě [" + xv.toFixed(2) + ", " + yv.toFixed(2) + "]<br>"
+                    vysledek += "<strong>Monotonie:</strong> Roste na intervalu (-∞, " + xv.toFixed(2) + "], klesá na intervalu [" + xv.toFixed(2) + ", +∞)<br>"
+                }
+                
+                // prusecik s osou y
+                vysledek += "<strong>Průsečík s osou y:</strong> [0, " + c + "]<br>"
+                
+                // pruseciky s osou x (diskriminant)
+                let D = b * b - 4 * a * c
+                if(D > 0){
+                    let x1 = (-b + Math.sqrt(D)) / (2 * a)
+                    let x2 = (-b - Math.sqrt(D)) / (2 * a)
+                    vysledek += "<strong>Průsečíky s osou x:</strong> [" + x1.toFixed(2) + ", 0] a [" + x2.toFixed(2) + ", 0]<br>"
+                } else if(D == 0){
+                    let x1 = -b / (2 * a)
+                    vysledek += "<strong>Průsečík s osou x:</strong> [" + x1.toFixed(2) + ", 0] (jeden dvojnásobný)<br>"
+                } else {
+                    vysledek += "<strong>Průsečíky s osou x:</strong> Žádné (parabola neprotíná osu x)<br>"
+                }
+                
+                // nakreslit parabolu
+                ctx.clearRect(0, 0, 300, 300)
+                ctx.strokeStyle = "black"
+                ctx.lineWidth = 2
+                
+                // osy
+                ctx.beginPath()
+                ctx.moveTo(150, 0)
+                ctx.lineTo(150, 300)
+                ctx.moveTo(0, 150)
+                ctx.lineTo(300, 150)
+                ctx.stroke()
+                
+                // parabola
+                ctx.strokeStyle = "red"
+                ctx.lineWidth = 3
+                ctx.beginPath()
+                if(a > 0){
+                    // parabola nahoru
+                    ctx.moveTo(150, 250)
+                    ctx.quadraticCurveTo(150, 100, 50, 50)
+                    ctx.moveTo(150, 250)
+                    ctx.quadraticCurveTo(150, 100, 250, 50)
+                } else {
+                    // parabola dolu
+                    ctx.moveTo(150, 50)
+                    ctx.quadraticCurveTo(150, 200, 50, 250)
+                    ctx.moveTo(150, 50)
+                    ctx.quadraticCurveTo(150, 200, 250, 250)
+                }
+                ctx.stroke()
+            }
+            
+            vystup.innerHTML = vysledek
+        }
+    </script>
+</body>
+</html>
